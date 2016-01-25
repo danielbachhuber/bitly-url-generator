@@ -10,3 +10,18 @@
  * Domain Path: /languages
  * @package Bitly URL Generator
  */
+
+/**
+ * Initializes the Bitly URL Generator plugin
+ */
+function bitly_url_generator_load() {
+
+	require_once dirname( __FILE__ ) . '/inc/class-controller.php';
+
+	if ( defined( 'WP_CLI' ) && WP_CLI ) {
+		require_once dirname( __FILE__ ) . '/inc/class-cli-command.php';
+	}
+
+}
+
+add_action( 'init', 'bitly_url_generator_load' );
