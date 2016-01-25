@@ -30,7 +30,7 @@ class Controller {
 	}
 
 	private function setup_filters() {
-
+		add_filter( 'pre_get_shortlink', array( $this, 'filter_pre_get_shortlink' ), 10, 2 );
 	}
 
 	/**
@@ -55,6 +55,16 @@ class Controller {
 			return;
 		}
 		self::set_short_url( $post_id, $short_url );
+	}
+
+	/**
+	 * Use the bitly shortlink for a post if present
+	 */
+	public function filter_pre_get_shortlink( $retval, $post_id ) {
+		if ( $short_url = self::get_short_url( $post_id ) ) {
+			return $short_url;
+		}
+		return $retval;
 	}
 
 	/**
