@@ -1,15 +1,15 @@
-=== Bitly URL Generator ===
-Contributors: danielbachhuber
-Tags: bitly, shortlinks
-Requires at least: 4.0
-Tested up to: 4.4.1
-Stable tag: 0.0
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+# Bitly URL Generator #
+**Contributors:** danielbachhuber  
+**Tags:** bitly, shortlinks  
+**Requires at least:** 4.0  
+**Tested up to:** 4.4.1  
+**Stable tag:** 0.0  
+**License:** GPLv2 or later  
+**License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
 Generate Bitly short urls for posts
 
-== Description ==
+## Description ##
 
 Generates Bitly short urls for posts, saves the short URL to a `bitly_url` meta field, and filters `wp_get_shortlink()` to use the Bitly short URL when present.
 
@@ -17,7 +17,7 @@ Define your API login and key with `BITLY_URL_GENERATOR_API_LOGIN` and `BITLY_UR
 
 By default, the plugin works with posts and pages. Add Bitly support to your custom post type with `add_post_type_support( 'cpt', 'bitly' );`.
 
-== Installation ==
+## Installation ##
 
 Installation is just a few steps:
 
@@ -25,8 +25,8 @@ Installation is just a few steps:
 2. Define the authentication credentials with `BITLY_URL_GENERATOR_API_LOGIN` and `BITLY_URL_GENERATOR_API_KEY` constants.
 3. (Optionally) enable for your custom post type with `add_post_type_support( 'cpt', 'bitly' );`
 
-== Changelog ==
+## Changelog ##
 
-= 0.1 (???? ??, ????) =
+### 0.1 (???? ??, ????) ###
 * Initial release.
 
