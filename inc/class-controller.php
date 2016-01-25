@@ -25,14 +25,36 @@ class Controller {
 	}
 
 	private function setup_actions() {
-		add_action( 'init', function(){
-			add_post_type_support( 'post', 'bitly' );
-			add_post_type_support( 'page', 'bitly' );
-		}, 100 );
+		add_action( 'init', array( $this, 'action_init_early' ), 1 ); // after create_initial_post_types
+		add_action( 'wp_insert_post', array( $this, 'action_wp_insert_post' ), 10, 2 );
 	}
 
 	private function setup_filters() {
-		
+
+	}
+
+	/**
+	 * Register Bitly support for default post types
+	 */
+	public function action_init_early() {
+		add_post_type_support( 'post', self::SUPPORTS_KEY );
+		add_post_type_support( 'page', self::SUPPORTS_KEY );
+	}
+
+	/**
+	 * Generate Bitly short URLs when the post is updated
+	 */
+	public function action_wp_insert_post( $post_id, $post ) {
+		if ( 'publish' != $post->post_status
+				|| ! self::post_type_supports_bitly( $post->post_type )
+				|| self::get_short_url( $post_id ) ) {
+				return;
+		}
+		$short_url = self::generate_short_url( $post_id );
+		if ( is_wp_error( $short_url ) ) {
+			return;
+		}
+		self::set_short_url( $post_id, $short_url );
 	}
 
 	/**

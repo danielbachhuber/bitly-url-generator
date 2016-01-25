@@ -17,6 +17,7 @@
 function bitly_url_generator_load() {
 
 	require_once dirname( __FILE__ ) . '/inc/class-controller.php';
+	Bitly_URL_Generator\Controller::get_instance();
 
 	if ( defined( 'WP_CLI' ) && WP_CLI ) {
 		require_once dirname( __FILE__ ) . '/inc/class-cli-command.php';
@@ -24,4 +25,4 @@ function bitly_url_generator_load() {
 
 }
 
-add_action( 'init', 'bitly_url_generator_load' );
+add_action( 'after_setup_theme', 'bitly_url_generator_load' );
