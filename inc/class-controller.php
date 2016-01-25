@@ -119,7 +119,7 @@ class Controller {
 
 		$body = json_decode( wp_remote_retrieve_body( $response ), true );
 		if ( 200 !== $body['status_code'] ) {
-			return new WP_Error( 'bitly_api_fail', sprintf( __( 'Bitly API returned an error: %s', 'bitly-url-generator' ), sanitize_text_field( $body['message'] ) ) );
+			return new WP_Error( 'bitly_api_fail', sprintf( __( 'Bitly API returned an error: %s', 'bitly-url-generator' ), json_encode( $body ) ) );
 		}
 		if ( ! empty( $body['data']['url'] ) ) {
 			return esc_url_raw( $body['data']['url'] );
